@@ -1,6 +1,10 @@
 resource "azurerm_resource_group" "vaultworkshop" {
-  name     = "${var.prefix}-vault-devrg"
+  name     = "${var.prefix}-vault-rg"
   location = "${var.location}"
+
+  tags {
+    envrionment = "production"
+  }
 }
 
 resource "azurerm_virtual_network" "vnet" {
