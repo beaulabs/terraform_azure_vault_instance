@@ -1,3 +1,14 @@
+terraform {
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "beaulabs"
+
+    workspaces {
+      name = "prod_azure_vault_instance"
+    }
+  }
+}
+
 resource "azurerm_resource_group" "vaultworkshop" {
   name     = "${var.prefix}-vault-rg"
   location = "${var.location}"

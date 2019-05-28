@@ -10,6 +10,9 @@
 .terraform/*
 **/.terraform/*
 
+# Terraform CLI Configuration
+.terraformrc
+
 # Terraform Variables
 *.tfvars
 
