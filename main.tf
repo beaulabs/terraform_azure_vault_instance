@@ -15,6 +15,7 @@ resource "azurerm_resource_group" "vaultworkshop" {
 
   tags {
     envrionment = "production"
+    owner       = "beau"
   }
 }
 
@@ -80,6 +81,11 @@ resource "azurerm_network_interface" "vault-nic" {
   resource_group_name       = "${azurerm_resource_group.vaultworkshop.name}"
   network_security_group_id = "${azurerm_network_security_group.vault-sg.id}"
 
+  tags {
+    envrionment = "production"
+    owner       = "beau"
+  }
+
   ip_configuration {
     name                          = "${var.prefix}ipconfig"
     subnet_id                     = "${azurerm_subnet.subnet.id}"
@@ -94,6 +100,11 @@ resource "azurerm_public_ip" "vault-pip" {
   resource_group_name = "${azurerm_resource_group.vaultworkshop.name}"
   allocation_method   = "Dynamic"
   domain_name_label   = "${var.prefix}"
+
+  tags {
+    envrionment = "production"
+    owner       = "beau"
+  }
 }
 
 resource "azurerm_virtual_machine" "vault" {
@@ -104,6 +115,11 @@ resource "azurerm_virtual_machine" "vault" {
 
   network_interface_ids         = ["${azurerm_network_interface.vault-nic.id}"]
   delete_os_disk_on_termination = "true"
+
+  tags {
+    envrionment = "production"
+    owner       = "beau"
+  }
 
   storage_image_reference {
     publisher = "${var.image_publisher}"
@@ -206,6 +222,11 @@ data "azurerm_public_ip" "vault-pip" {
   name                = "${azurerm_public_ip.vault-pip.name}"
   depends_on          = ["azurerm_virtual_machine.vault"]
   resource_group_name = "${azurerm_virtual_machine.vault.resource_group_name}"
+
+  tags {
+    envrionment = "production"
+    owner       = "beau"
+  }
 }
 
 resource "azurerm_mysql_firewall_rule" "vault-mysql" {
