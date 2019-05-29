@@ -118,7 +118,7 @@ resource "azurerm_virtual_machine" "vault" {
 
   tags {
     envrionment = "production"
-    owner       = "beau"
+    Owner       = "beau"
   }
 
   storage_image_reference {
