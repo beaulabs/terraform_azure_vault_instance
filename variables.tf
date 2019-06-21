@@ -40,7 +40,7 @@ variable "vm_size" {
 
   #default     = "Standard_A0"
 
-  default = "Standard_B1ls"
+  default = "Standard_B2s"
 }
 
 variable "vault_source_ips" {
